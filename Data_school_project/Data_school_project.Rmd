@@ -5,7 +5,7 @@ short_title: Optional short title # Delete if not required
 
 author:  Your Name
 affiliation: CSIRO Business Unit # Or group/team
-photo: resources/img/photo.jpeg
+photo: resources/img/other_profile_pic.jpeg
 
 output: DSreport::project_summary
 ---
