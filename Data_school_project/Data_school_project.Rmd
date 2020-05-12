@@ -1,11 +1,11 @@
 ---
 title: A short title that describes your work
-subtitle: 
-short_title: Optional short title # Delete if not required
+subtitle: What Dark Sorcery Is This?
+short_title: Apprentice Goat Herd # Delete if not required
 
-author:  Your Name
-affiliation: CSIRO Business Unit # Or group/team
-photo: resources/img/other_profile_pic.jpeg
+author:  Derek Fulton
+affiliation: Oceans & Atmosphere # Or group/team
+photo: resources/img/other_profile_pic.jpg
 
 output: DSreport::project_summary
 ---
