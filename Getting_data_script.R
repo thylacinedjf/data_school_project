@@ -6,8 +6,9 @@ library(tidyverse)  # load tidyverse library
 library(tidync)     # load tidync library
 library(dplyr)      # load dplyr library
 library(ggplot2)    # ggplot library
-library(pals)       # even more palettes
+library(pals)       # load pals library (palettes)
 library(gridExtra)  # load gridextra library
+library(gganimate)  # load gganimate library
 
 # Assume entire grid active
 
@@ -29,7 +30,7 @@ sstdata_surf <- filter(sstDataCombo, k == 47) #filter the tibble to the surface 
 ggplot(sstdata_surf, aes(x = temp)) + 
   geom_density()
 
-# based on the plot above I don't need values less than 25.
+# based on the plot above I don't need to examine values less than 25.
 
 ggplot(sstdata_surf, aes(x = dhw)) + 
   geom_density()
@@ -104,38 +105,20 @@ ggplot(sstdata_sub, aes(x = longitude, latitude, colour = temp)) +
   scale_colour_gradientn(colours = ocean.balance(100)) +
   labs(x = 'Longitude', y = 'Latitude', colour = 'Sea Surface\nTemperature(C)') +
   coord_quickmap()
-                      
-# Do the animation.
-
-#sstdata_mask$yinvert <- imax - sstdata_mask$i
-#ggplot(sstdata_mask, aes(x = j, y = yinvert, fill = temp)) +
-#  geom_raster() +
-#  scale_fill_gradientn(colours = ocean.balance(100)) +
-#  transition_states(time)
 
 # Plot of dhw
 
-ggplot(sstdata_sub, aes(x = j, y = yinvert, fill = dhw)) +
-  geom_raster() +
-  scale_fill_gradientn(colours = ocean.curl(100))
+ggplot(sstdata_sub, aes(x = longitude, latitude, colour = dhw)) +
+  geom_point(size = 1, alpha = 1) +
+  scale_colour_gradientn(colours = ocean.curl(100)) +
+  labs(x = 'Longitude', y = 'Latitude', colour = 'Degree\nHeating\nWeeks') +
+  coord_quickmap()
+                      
+# Do the animation of the SSTMax over time.
 
-# Subset to just D1, D2 active and melt into one data frame
-
-# sstdata2D <- tidync('gbr4_simple_2020-03.nc') %>% activate("D1,D2") %>%
-#  hyper_tibble(select_var = c("latitude", "longitude"))
-# sstdataCombo <- merge(sstdata, sstdata2D, by=c("i","j"))
-# sstdata_sub2 <- filter(sstdataCombo, time == 11017)
-# ggplot(sstdata_sub2, aes(x=longitude, y=latitude, fill=temp)) + 
-#  geom_tile() +
-#  scale_color_viridis() +
-#  scale_fill_viridis() 
-  
-# rbind or merge (or similar) to get into right dataframe format
-
-
-# plot up temperature vs salinity
-
-
-
-# plot through time
-
+ggplot(sstdata_mask, aes(x = longitude, latitude, colour = temp)) +
+  geom_point(size = 1, alpha = 1) +
+  scale_colour_gradientn(colours = ocean.balance(100)) +
+  labs(x = 'Longitude', y = 'Latitude', colour = 'Sea Surface\nTemperature(C)') +
+  coord_quickmap() +
+  transition_states(time)
