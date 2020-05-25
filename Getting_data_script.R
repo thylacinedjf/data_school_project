@@ -69,7 +69,7 @@ p3 <- ggplot(sstdata_dhwSum, aes(x = NewTime, y = dhwMean)) +
 
 p4 <- ggplot(sstdata_dhwSum, aes(x = NewTime, y = dhwSD)) +
   geom_line(size = 2, colour = 'palegreen3') +
-  labs(x = 'Days Since Feb 29 2020', y = 'Degree Heating Week STANDARD DEVIATION') + 
+  labs(x = 'Days Since Feb 29 2020', y = 'Degree Heating Week SD') + 
   theme_bw() + theme(axis.title = element_text(face = 'bold'))
 
 p5 <- ggplot(sstdata_dhwSum, aes(x = NewTime, y = SSTmean, colour = SSTmean)) +
@@ -123,8 +123,8 @@ anim_SSTMaxOverTime <- ggplot(sstdata_mask, aes(x = longitude, latitude, colour 
   coord_quickmap() +
   transition_states(time)
 
-anim_save('anim_SSTMaxOverTime.gif')   # export anim_SSTMaxOverTime as a gif.
+animate(anim_SSTMaxOverTime, nframes = 300, fps = 30, renderer = file_renderer(prefix = 'SSTMaxOverTime'))   # export anim_SSTMaxOverTime as a image sequence.
 
+animate(anim_SSTMaxOverTime, nframes = 300, fps = 30, renderer = gifski_renderer(), width = 578, height = 571) #export anim_SSTMaxOverTime as a gif
 
-
-  
+anim_save("SSTMaxOverTime.gif")  
