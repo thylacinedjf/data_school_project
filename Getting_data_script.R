@@ -116,9 +116,15 @@ ggplot(sstdata_sub, aes(x = longitude, latitude, colour = dhw)) +
                       
 # Do the animation of the SSTMax over time.
 
-ggplot(sstdata_mask, aes(x = longitude, latitude, colour = temp)) +
+anim_SSTMaxOverTime <- ggplot(sstdata_mask, aes(x = longitude, latitude, colour = temp)) +
   geom_point(size = 1, alpha = 1) +
   scale_colour_gradientn(colours = ocean.balance(100)) +
   labs(x = 'Longitude', y = 'Latitude', colour = 'Sea Surface\nTemperature(C)') +
   coord_quickmap() +
   transition_states(time)
+
+anim_save('anim_SSTMaxOverTime.gif')   # export anim_SSTMaxOverTime as a gif.
+
+
+
+  
