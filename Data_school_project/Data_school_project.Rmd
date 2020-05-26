@@ -1,5 +1,5 @@
 ---
-title: An Adventure In Coding With R And Exploring Data.
+title: What I Did On The Weekend.
 subtitle: What Dark Sorcery Is This?
 short_title: Apprentice Goat Herd # Delete if not required
 
